@@ -1,8 +1,8 @@
 [
   {
     "id": "console",
-    "execute-command": "./vm-console.sh",
-    "command-working-directory": ".",
+    "execute-command": "/opt/runhyve/vm-webhooks/vm-console.sh",
+    "command-working-directory": "/opt/runhyve/vm-webhooks/",
     "include-command-output-in-response": true,
     "pass-arguments-to-command": [
       {
@@ -13,8 +13,8 @@
   },
   {
     "id": "create",
-    "execute-command": "./vm-create.sh",
-    "command-working-directory": ".",
+    "execute-command": "/opt/runhyve/vm-webhooks/vm-create.sh",
+    "command-working-directory": "/opt/runhyve/vm-webhooks/",
     "include-command-output-in-response": true,
     "pass-arguments-to-command": [
       {
@@ -37,8 +37,8 @@
   },
   {
     "id": "start",
-    "execute-command": "./vm-start.sh",
-    "command-working-directory": ".",
+    "execute-command": "/opt/runhyve/vm-webhooks/vm-start.sh",
+    "command-working-directory": "/opt/runhyve/vm-webhooks/",
     "include-command-output-in-response": true,
     "pass-arguments-to-command": [
       {
@@ -49,8 +49,8 @@
   },
   {
     "id": "status",
-    "execute-command": "./vm-status.sh",
-    "command-working-directory": ".",
+    "execute-command": "/opt/runhyve/vm-webhooks/vm-status.sh",
+    "command-working-directory": "/opt/runhyve/vm-webhooks/",
     "include-command-output-in-response": true,
     "pass-arguments-to-command": [
       {
@@ -61,8 +61,8 @@
   },
   {
     "id": "stop",
-    "execute-command": "./vm-stop.sh",
-    "command-working-directory": ".",
+    "execute-command": "/opt/runhyve/vm-webhooks/vm-stop.sh",
+    "command-working-directory": "/opt/runhyve/vm-webhooks/",
     "include-command-output-in-response": true,
     "pass-arguments-to-command": [
       {

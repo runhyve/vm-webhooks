@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/local/bin/bash
 if [ -v "$1" ]; then
   echo "Usage: $0 <vmname>"
   exit 2
