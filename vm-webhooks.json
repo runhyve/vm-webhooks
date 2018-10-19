@@ -7,7 +7,7 @@
     "pass-arguments-to-command": [
       {
         "source": "payload",
-        "name": "vm_name"
+        "name": "name"
       }
     ]
   },
