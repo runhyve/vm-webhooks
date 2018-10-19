@@ -1,0 +1,74 @@
+[
+  {
+    "id": "console",
+    "execute-command": "./vm-console.sh",
+    "command-working-directory": ".",
+    "include-command-output-in-response": true,
+    "pass-arguments-to-command": [
+      {
+        "source": "payload",
+        "name": "vm_name"
+      }
+    ]
+  },
+  {
+    "id": "create",
+    "execute-command": "./vm-create.sh",
+    "command-working-directory": ".",
+    "include-command-output-in-response": true,
+    "pass-arguments-to-command": [
+      {
+        "source": "payload",
+        "name": "system"
+      },
+      {
+        "source": "payload",
+        "name": "plan"
+      },
+      {
+        "source": "payload",
+        "name": "name"
+      },
+      {
+        "source": "payload",
+        "name": "image"
+      }
+    ]
+  },
+  {
+    "id": "start",
+    "execute-command": "./vm-start.sh",
+    "command-working-directory": ".",
+    "include-command-output-in-response": true,
+    "pass-arguments-to-command": [
+      {
+        "source": "payload",
+        "name": "name"
+      }
+    ]
+  },
+  {
+    "id": "status",
+    "execute-command": "./vm-status.sh",
+    "command-working-directory": ".",
+    "include-command-output-in-response": true,
+    "pass-arguments-to-command": [
+      {
+        "source": "payload",
+        "name": "name"
+      }
+    ]
+  },
+  {
+    "id": "stop",
+    "execute-command": "./vm-stop.sh",
+    "command-working-directory": ".",
+    "include-command-output-in-response": true,
+    "pass-arguments-to-command": [
+      {
+        "source": "payload",
+        "name": "name"
+      }
+    ]
+  }
+]
