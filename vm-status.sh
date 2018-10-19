@@ -13,7 +13,7 @@ fi
 
 name="$1"
 
-pushd /home/kwiat/vm-bhyve > /dev/null
+pushd /opt/runhyve/vm-bhyve > /dev/null
 status="$(./vm list | awk "\$1 == \"$name\" { print \$8 }")"
 popd > /dev/null
 

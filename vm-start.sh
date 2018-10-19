@@ -13,7 +13,7 @@ fi
 
 name="$1"
 
-pushd /home/kwiat/vm-bhyve > /dev/null
+pushd /opt/runhyve/vm-bhyve > /dev/null
 ./vm start "$name" > /dev/null 2>&1 &
 popd > /dev/null
 

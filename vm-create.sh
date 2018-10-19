@@ -17,7 +17,7 @@ plan="$2"
 name="$3"
 image="$4"
 
-pushd /home/kwiat/vm-bhyve > /dev/null
+pushd /opt/runhyve/vm-bhyve > /dev/null
 ./vm create -t "$system-$plan" -i "$image" "$name" > /dev/null 2>&1 &
 popd > /dev/null
 

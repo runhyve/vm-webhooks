@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 if [ -v "$1" ]; then
   echo "Usage: $0 <vmname>"
   exit 2
