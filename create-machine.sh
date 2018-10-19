@@ -17,13 +17,8 @@ plan="$2"
 name="$3"
 image="$4"
 
-create_vm(){
-  pushd /home/kwiat/vm-bhyve > /dev/null
-  ./vm create -t "$system-$plan" -i "$image" "$name"
-  ./vm start "$name"
-  popd > /dev/null
-}
-
-create_vm &
+pushd /home/kwiat/vm-bhyve > /dev/null
+./vm create -t "$system-$plan" -i "$image" "$name" > /dev/null 2>&1 &
+popd > /dev/null
 
 echo "{\"status\": \"creating\"}"
