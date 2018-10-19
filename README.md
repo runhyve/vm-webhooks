@@ -13,11 +13,13 @@ pkg install webhook gotty jo jq bash
 mkdir -p /opt/runhyve
 git clone https://github.com/runhyve/vm-bhyve.git /opt/runhyve/vm-bhyve
 git clone https://gitlab.com/runhyve/vm-webhooks.git /opt/runhyve/vm-webhooks
+chmod +x /opt/runhyve/vm-bhyve/vm
 cd /opt/runhyve/vm-webhooks
 ln -s /opt/runhyve/vm-webhooks/vm-webhooks.json /usr/local/etc/vm-webhooks.json
 echo 'webhook_enable="YES"' >> /etc/rc.conf
 echo 'webhook_conf="/usr/local/etc/vm-webhooks.json"' >> /etc/rc.conf
 echo 'webhook_options="-urlprefix vm -ip 127.0.0.1 -port 9090"' >> /etc/rc.conf
+echo 'webhook_user="root"' >> /etc/rc.conf
 service webhook start
 ```
 
