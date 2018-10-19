@@ -1,7 +1,7 @@
 [{
   "id": "create",
-  "execute-command": "/home/kwiat/webhook-examples/create-machine.sh",
-  "command-working-directory": "/home/kwiat/webhook-examples",
+  "execute-command": "/home/quex/workspace/runateam/webhook/create-machine.sh",
+  "command-working-directory": "/home/quex/workspace/runateam/webhook",
   "include-command-output-in-response": true,
   "pass-arguments-to-command": [
     {
