@@ -5,7 +5,7 @@ mkdir -p /opt/runhyve
 git clone git@github.com:runhyve/vm-bhyve.git /opt/runhyve/vm-bhyve
 git clone git@github.com:runhyve/vm-webhooks /opt/runhyve/vm-webhooks
 cd /opt/runhyve/vm-webhooks
-ln -s /opt/runhyve-vm/webhooks /usr/local/etc/vm-webhooks.json
+ln -s /opt/runhyve-vm/webhooks/vm-webhooks.json /usr/local/etc/vm-webhooks.json
 echo 'webhook_enable="YES"' >> /etc/rc.conf
 echo 'webhook_conf="/usr/local/etc/vm-webhooks.conf"' >> /etc/rc.conf
 ```
