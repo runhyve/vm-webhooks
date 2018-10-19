@@ -1,0 +1,12 @@
+[{
+  "id": "status",
+  "execute-command": "/home/kwiat/webhook-examples/status-machine.sh",
+  "command-working-directory": "/home/kwiat/webhook-examples",
+  "include-command-output-in-response": true,
+  "pass-arguments-to-command": [
+    {
+      "source": "payload",
+      "name": "name"
+    }
+  ]
+}]
