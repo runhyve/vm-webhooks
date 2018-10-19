@@ -1,0 +1,25 @@
+[{
+    "id": "create",
+    #"execute-command": "/home/quex/workspace/runateam/webhook/create-machine.sh",
+    "execute-command": "/home/kwiat/webhook-examples/create-machine.sh",
+    #"command-working-directory": "/home/quex/workspace/runateam/webhook"
+    "command-working-directory": "/home/kwiat/webhook-examples",
+    "include-command-output-in-response": true,
+  "pass-arguments-to-command": [{
+      "source": "payload",
+      "name": "system"
+    },
+    {
+      "source": "payload",
+      "name": "plan"
+    },
+    {
+      "source": "payload",
+      "name": "name"
+    },
+    {
+      "source", "payload",
+      "name": "image"
+    }
+  ]
+}]
