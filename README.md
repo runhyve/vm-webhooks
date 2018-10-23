@@ -36,7 +36,7 @@ Note: Before exposing webhook service to the world please secure it properly.
 ### Create Virtual Machine
 ```
 $ jo -p system=freebsd plan=1C-1GB-50HDD name=webhook-vm image=FreeBSD-11.2-RELEASE-amd64.raw | \
-curl -s -X POST http://localhost:9090/hooks/create -H 'Content-Type: application/json' -d @-
+curl -s -X POST http://localhost:9090/vm/create -H 'Content-Type: application/json' -d @-
 {"status": "creating"}
 ```
 
