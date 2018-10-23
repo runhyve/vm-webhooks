@@ -1,9 +1,5 @@
 #!/usr/local/bin/bash
-error(){
-  echo "{\"status\": \"error\"}"
-}
-
-trap error ERR;
+. commons.sh
 
 if [ -v $1 ] ; then
   echo "Usage: $0 <name>" > /dev/stderr

@@ -1,10 +1,5 @@
 #!/usr/local/bin/bash
-error(){
-  echo "{\"status\": \"error\"}"
-}
-
-trap error ERR;
-
+. commons.sh
 
 if [ -v $1 ] || [ -v $2 ] || [ -v $3 ] || [ -v $4 ]; then
   echo "Usage: $0 <system> <plan> <name> <image> [network]" > /dev/stderr

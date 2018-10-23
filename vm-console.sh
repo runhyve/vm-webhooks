@@ -1,4 +1,6 @@
 #!/usr/local/bin/bash
+. commons.sh
+
 if [ -v "$1" ]; then
   echo "Usage: $0 <vmname>"
   exit 2

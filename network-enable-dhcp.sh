@@ -1,9 +1,5 @@
 #!/usr/local/bin/bash
-error(){
-  echo "{\"status\": \"error\"}"
-}
-
-trap error ERR;
+. commons.sh
 
 ipcalc="/usr/local/bin/ipcalc"
 
