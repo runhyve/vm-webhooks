@@ -23,8 +23,9 @@ echo 'webhook_user="root"' >> /etc/rc.conf
 echo 'dnsmasq_enable="YES"' >> /etc/rc.conf
 echo 'conf-dir=/vms/.config/dnsmasq/,*.conf' > /usr/local/etc/rc.d/dnsmasq.conf
 echo 'include "/zroot/vm/.config/pf-nat.conf"' > /etc/pf.conf
+touch /zroot/vm/.config/pf-nat.conf
 echo 'pf_enable="YES"' >> /etc/rc.conf
-service start pf
+service pf start
 
 service webhook start
 ```
