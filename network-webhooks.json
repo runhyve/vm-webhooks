@@ -38,5 +38,17 @@
         "name": "name"
       }
     ]
+  },
+  {
+    "id": "net-disable-nat",
+    "execute-command": "/opt/runhyve/vm-webhooks/network-disable-nat.sh",
+    "command-working-directory": "/opt/runhyve/vm-webhooks/",
+    "include-command-output-in-response": true,
+    "pass-arguments-to-command": [
+      {
+        "source": "payload",
+        "name": "name"
+      }
+    ]
   }
 ]
