@@ -19,7 +19,7 @@ mkdir -p "$_PFNATDIR"
 rm "$_PFNATDIR/${_INTERFACE}_pf-nat.conf"
 
 for natfile in $_PFNATDIR/*_pf-nat.conf; do
-	cat "$natfile"
+  cat "$natfile" || true
 done > "$_CONFDIR/pf-nat.conf"
 
 pfctl -f /etc/pf.conf
