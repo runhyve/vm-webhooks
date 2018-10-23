@@ -100,6 +100,18 @@
     ]
   },
   {
+    "id": "net-disable-dhcp",
+    "execute-command": "/opt/runhyve/vm-webhooks/network-disable-dhcp.sh",
+    "command-working-directory": "/opt/runhyve/vm-webhooks/",
+    "include-command-output-in-response": true,
+    "pass-arguments-to-command": [
+      {
+        "source": "payload",
+        "name": "name"
+      }
+    ]
+  },
+  {
     "id": "net-enable-nat",
     "execute-command": "/opt/runhyve/vm-webhooks/network-enable-nat.sh",
     "command-working-directory": "/opt/runhyve/vm-webhooks/",
