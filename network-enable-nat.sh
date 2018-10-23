@@ -5,8 +5,7 @@ error(){
 
 trap error ERR;
 
-
-if [ -v $1 ] || [ -v $2 ]; then
+if [ -v $1 ]; then
   echo "Usage: $0 <name>" > /dev/stderr
   echo "Example: $0 mynetwork" > /dev/stderr
   exit 2

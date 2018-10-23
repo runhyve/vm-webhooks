@@ -9,7 +9,7 @@ Note: It requires forked version of vm-bhyve until this PR is merged: https://gi
 
 ## Installation
 ```
-pkg install webhook gotty jo jq bash dnsmasq ipcalc
+pkg install webhook gotty jo jq bash dnsmasq gnu-ipcalc
 mkdir -p /opt/runhyve
 git clone https://github.com/runhyve/vm-bhyve.git /opt/runhyve/vm-bhyve
 git clone https://gitlab.com/runhyve/vm-webhooks.git /opt/runhyve/vm-webhooks
@@ -26,7 +26,6 @@ echo 'include "/zroot/vm/.config/pf-nat.conf"' > /etc/pf.conf
 touch /zroot/vm/.config/pf-nat.conf
 echo 'pf_enable="YES"' >> /etc/rc.conf
 service pf start
-
 service webhook start
 ```
 
