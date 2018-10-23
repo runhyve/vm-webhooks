@@ -9,7 +9,7 @@ Note: It requires forked version of vm-bhyve until this PR is merged: https://gi
 
 ## Installation
 ```
-pkg install webhook gotty jo jq bash
+pkg install webhook gotty jo jq bash dnsmasq ipcalc
 mkdir -p /opt/runhyve
 git clone https://github.com/runhyve/vm-bhyve.git /opt/runhyve/vm-bhyve
 git clone https://gitlab.com/runhyve/vm-webhooks.git /opt/runhyve/vm-webhooks
@@ -20,6 +20,12 @@ echo 'webhook_enable="YES"' >> /etc/rc.conf
 echo 'webhook_conf="/usr/local/etc/vm-webhooks.json"' >> /etc/rc.conf
 echo 'webhook_options="-urlprefix vm -ip 127.0.0.1 -port 9090"' >> /etc/rc.conf
 echo 'webhook_user="root"' >> /etc/rc.conf
+echo 'dnsmasq_enable="YES"' >> /etc/rc.conf
+echo 'conf-dir=/vms/.config/dnsmasq/,*.conf' > /usr/local/etc/rc.d/dnsmasq.conf
+echo 'include "/zroot/vm/.config/pf-nat.conf"' > /etc/pf.conf
+echo 'pf_enable="YES"' >> /etc/rc.conf
+service start pf
+
 service webhook start
 ```
 
