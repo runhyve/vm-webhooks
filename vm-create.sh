@@ -11,7 +11,7 @@ system="$1"
 plan="$2"
 name="$3"
 image="$4"
-network="${5:-default}"
+network="${5:-public}"
 
 pushd /opt/runhyve/vm-bhyve > /dev/null
 ./vm create -t "$system-$plan" -i "$image" "$name" > /dev/null 2>&1 &
