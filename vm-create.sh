@@ -1,6 +1,11 @@
 #!/usr/local/bin/bash
 . commons.sh
 
+err_msg(){
+  echo "{\"error\":\"$1\"}"
+  exit 2
+}
+
 if [ -v $1 ] || [ -v $2 ] || [ -v $3 ] || [ -v $4 ]; then
   echo "Usage: $0 <system> <plan> <name> <image> [network]" > /dev/stderr
   echo "Example: $0 freebsd 1C-1GB-50HDD FreeBSD-VM FreeBSD-11.2-RELEASE-amd64.raw" > /dev/stderr
@@ -14,25 +19,21 @@ image="$4"
 network="${5:-public}"
 
 if [ ! -r "/zroot/vm/.templates/${system}-${plan}.conf" ]; then
-  echo "Error: Coulnd't find template for plan ${system}-${plan}"
-  exit 2
+  err_msg "Coulnd't find template for plan ${system}-${plan}"
 fi
 
 if [ ! -r "/zroot/vm/.img/${image}" ]; then
-  echo "Error: Couldn't find imge ${image}"
-  exit 2
+  err_msg "Couldn't find imge ${image}"
 fi
 
 pushd /opt/runhyve/vm-bhyve > /dev/null
 
 if [ ! -z "$(./vm list | awk "\$1 = /$name/ { print }")" ]; then
-  echo "Error: Virtual machine $name already exist"
-  exit
+  err_msg "Virtual machine $name already exist"
 fi
 
 if ! ./vm switch list | cut -f1 | grep "$network"; then
-  echo "Error: Network ${network} doesn't exist"
-  exit 2
+  err_msg "Network ${network} doesn't exist"
 fi
 
 ./vm create -t "$system-$plan" -i "$image" "$name" > /dev/null 2>&1 &
