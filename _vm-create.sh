@@ -2,7 +2,7 @@
 . commons.sh
 
 pushd /opt/runhyve/vm-bhyve > /dev/null
-./vm create -t "$_template" -i "$image" "$name" > /dev/null 2>&1
+./vm create -t "$_template" -i "$image" "$name"
 
 if [ "$network" != "public" ]; then
   sysrc -f "/zroot/vm/${name}/${name}.conf" network0_switch="$network"

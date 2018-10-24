@@ -9,8 +9,18 @@ fi
 
 name="$1"
 
-pushd /opt/runhyve/vm-bhyve > /dev/null
-./vm start "$name" > /dev/null 2>&1 &
-popd > /dev/null
+if ! check_vm "$name"; then
+  report_error "Virtual machine ${name} doesn't exist"
+fi
 
-echo "{\"status\": \"starting\"}"
+pushd /opt/runhyve/vm-bhyve > /dev/null
+
+message="$(./vm start "$name" 2>&1 )"
+
+if [ $? -ne 0 ]; then
+  report_error "$message"
+else 
+  report_success "$message"
+fi
+
+popd > /dev/null

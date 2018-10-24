@@ -1,13 +1,12 @@
-set -e
 PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 
 report_error(){
-  jo status="error" message="${1:-error}"
+  jo status="error" message="${1:-"Unknown error"}"
   exit 2
 }
 
 report_success(){
-  jo status="success" message="${1:-done}"
+  jo status="success" message="${1:-"Success"}"
   exit 0
 }
 
@@ -57,4 +56,3 @@ check_network(){
   popd > /dev/null
   return $errno
 }
-
