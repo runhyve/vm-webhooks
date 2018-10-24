@@ -25,7 +25,7 @@ check_template(){
 check_img(){
   pushd /opt/runhyve/vm-bhyve > /dev/null
   img="$1"
-  if [ ! -z "$(./vm img | awk "\$1 = /$img/ { print }")" ]; then
+  if [ ! -z "$(./vm img | awk "\$1 == \"$img\" { print }")" ]; then
     errno=0
   else
     errno=1
@@ -36,7 +36,7 @@ check_img(){
 check_vm(){
   pushd /opt/runhyve/vm-bhyve > /dev/null
   vm="$1"  
-  if [ ! -z "$(./vm list | awk "\$1 = /$vm/ { print }")" ]; then
+  if [ ! -z "$(./vm list | awk "\$1 == \"$vm\" { print }")" ]; then
     errno=0
   else
     errno=1
@@ -48,7 +48,7 @@ check_vm(){
 check_network(){
   pushd /opt/runhyve/vm-bhyve > /dev/null
   network="$1"  
-  if [ ! -z "$(./vm switch list | awk "\$1 = /$network/ { print }")" ]; then
+  if [ ! -z "$(./vm switch list | awk "\$1 == \"$network\" { print }")" ]; then
     errno=0
   else
     errno=1
