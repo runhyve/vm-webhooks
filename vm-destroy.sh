@@ -19,4 +19,8 @@ pushd /opt/runhyve/vm-bhyve > /dev/null
 
 popd > /dev/null
 
-report_success
+if ! check_vm "$name"; then
+  report_success "Virtual machine deleted"
+else
+  report_error "Virtual machine not deleted"
+fi
