@@ -9,14 +9,18 @@ fi
 
 name="$1"
 
-if ! check_network "$network"; then
-  report_error "Network $network doesn't exist"
+if ! check_network "$name"; then
+  report_error "Network $name doesn't exist"
 fi
 
-./network-disable-dhcp.sh "$name"
-./network-disable-nat.sh "$name"
+./network-disable-dhcp.sh "$name" || true
+./network-disable-nat.sh "$name" || true
 pushd /opt/runhyve/vm-bhyve > /dev/null
 ./vm switch destroy "$name"
 popd > /dev/null
 
-report_success
+if ! check_network "$name"; then
+  report_success "Network ${name} deleted"
+else
+  report_error "Netowkr ${name} not deleted"
+fi
