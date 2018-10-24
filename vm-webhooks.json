@@ -32,7 +32,11 @@
       {
         "source": "payload",
         "name": "image"
-      }
+      },
+      {
+        "source": "payload",
+        "name": "network"
+       }
     ]
   },
   {
@@ -62,6 +66,18 @@
   {
     "id": "stop",
     "execute-command": "/opt/runhyve/vm-webhooks/vm-stop.sh",
+    "command-working-directory": "/opt/runhyve/vm-webhooks/",
+    "include-command-output-in-response": true,
+    "pass-arguments-to-command": [
+      {
+        "source": "payload",
+        "name": "name"
+      }
+    ]
+  },
+  {
+    "id": "destroy",
+    "execute-command": "/opt/runhyve/vm-webhooks/vm-destroy.sh",
     "command-working-directory": "/opt/runhyve/vm-webhooks/",
     "include-command-output-in-response": true,
     "pass-arguments-to-command": [
