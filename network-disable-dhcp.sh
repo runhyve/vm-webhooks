@@ -15,9 +15,13 @@ name="$1"
 _CONFDIR="/zroot/vm/.config/"
 _DNSMASQDIR="${_CONFDIR}/dnsmasq/"
 
+if ! check_network "$name"; then
+  report_error "Network ${name} doesn't exist"
+fi
+
 rm  "${_DNSMASQDIR}/${name}.conf"
 service dnsmasq restart
 
 popd > /dev/null
 
-echo "{\"status\": \"deleting\"}"
+report_success

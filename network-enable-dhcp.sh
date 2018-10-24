@@ -10,6 +10,11 @@ fi
 pushd /opt/runhyve/vm-bhyve > /dev/null
 
 name="$1"
+
+if ! check_network "$name"; then
+  report_error "Network ${name} doesn't exist"
+fi
+
 _CIDR="$(./vm switch list | awk "\$1 == \"$name\" { print \$4 }")"
 _INTERFACE="$(./vm switch list | awk "\$1 == \"$name\" { print \$3 }")"
 export $(ipcalc --minaddr "$_CIDR")
@@ -35,4 +40,4 @@ service dnsmasq restart
 
 popd > /dev/null
 
-echo "{\"status\": \"creating\"}"
+report_success

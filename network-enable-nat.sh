@@ -10,6 +10,11 @@ fi
 pushd /opt/runhyve/vm-bhyve > /dev/null
 
 name="$1"
+
+if ! check_network "$network"; then
+  report_error "Network ${network} doesn't exist"
+fi
+
 _CIDR="$(./vm switch list | awk "\$1 == \"$name\" { print \$4 }")"
 _INTERFACE="$(./vm switch list | awk "\$1 == \"$name\" { print \$3 }")"
 _CONFDIR="/zroot/vm/.config/"
@@ -27,4 +32,4 @@ pfctl -f /etc/pf.conf
 
 popd > /dev/null
 
-echo "{\"status\": \"creating\"}"
+report_success

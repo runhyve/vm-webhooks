@@ -10,8 +10,12 @@ fi
 name="$1"
 cidr="$2"
 
+if check_network "$network"; then
+  report_error "Network ${network} doesn't exist"
+fi
+
 pushd /opt/runhyve/vm-bhyve > /dev/null
 ./vm switch create -a "$cidr" "$name"
 popd > /dev/null
 
-echo "{\"status\": \"creating\"}"
+report_success

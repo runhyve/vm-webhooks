@@ -14,6 +14,10 @@ _CONFDIR="/zroot/vm/.config/"
 _PFNATDIR="$_CONFDIR/pf-nat/"
 _INTERFACE="$(./vm switch list | awk "\$1 == \"$name\" { print \$3 }")"
 
+if ! check_network "$name"; then
+  report_error "Network ${network} doesn't exist"
+fi
+
 mkdir -p "$_PFNATDIR"
 
 rm "$_PFNATDIR/${_INTERFACE}_pf-nat.conf"
@@ -26,4 +30,4 @@ pfctl -f /etc/pf.conf
 
 popd > /dev/null
 
-echo "{\"status\": \"deleting\"}"
+report_success
