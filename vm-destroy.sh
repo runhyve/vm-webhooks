@@ -15,12 +15,8 @@ if ! check_vm "$name"; then
 fi
 
 pushd /opt/runhyve/vm-bhyve > /dev/null
-message="$(./vm destroy -f "$name" 2>&1)"
-
-if [ $? -ne 0 ]; then
-  report_error "$message"
-else
-  report_success "$message"
-fi
+./vm destroy -f "$name" || true # wrkaround for vm returning always false
 
 popd > /dev/null
+
+report_success
