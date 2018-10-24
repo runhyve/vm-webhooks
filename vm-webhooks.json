@@ -104,6 +104,18 @@
     ]
   },
   {
+    "id": "net-destroy",
+    "execute-command": "/opt/runhyve/vm-webhooks/network-destroy.sh",
+    "command-working-directory": "/opt/runhyve/vm-webhooks/",
+    "include-command-output-in-response": true,
+    "pass-arguments-to-command": [
+      {
+        "source": "payload",
+        "name": "name"
+      }
+    ]
+  },
+  {
     "id": "net-enable-dhcp",
     "execute-command": "/opt/runhyve/vm-webhooks/network-enable-dhcp.sh",
     "command-working-directory": "/opt/runhyve/vm-webhooks/",
