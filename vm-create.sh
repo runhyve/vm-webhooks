@@ -13,28 +13,26 @@ name="$3"
 image="$4"
 network="${5:-public}"
 
-export system plan name image network
+_template="${system}-${plan}"
 
-if [ ! -r "/zroot/vm/.templates/${system}-${plan}.conf" ]; then
-  report_error "Coulnd't find template for plan ${system}-${plan}"
+export system plan name image network _template
+
+if ! check_template "$_template"; then
+  report_error "Coulnd't find template for plan ${_template}"
 fi
 
-if [ ! -r "/zroot/vm/.img/${image}" ]; then
+if ! check_img "$image"; then
   report_error "Couldn't find imge ${image}"
 fi
 
-pushd /opt/runhyve/vm-bhyve > /dev/null
-
-if [ ! -z "$(./vm list | awk "\$1 = /$name/ { print }")" ]; then
-  report_error "Virtual machine $name already exist"
+if check_vm "$name"; then
+  report_error "Virtual machine ${name} already exist"
 fi
 
-if [ ! -z "$(./vm switch list | awk "\$1 = /$name/ { print }")" ]; then
+if ! check_network "$network"; then
   report_error "Network ${network} doesn't exist"
 fi
 
-popd > /dev/null
-
-bash ./_vm-create.sh &
+bash _vm-create.sh &
 
 report_success
