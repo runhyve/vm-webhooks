@@ -12,7 +12,7 @@ fi
 pushd /opt/runhyve/vm-bhyve > /dev/null
 
 name="$1"
-_CONFDIR="/zroot/vm/.config/"
+_CONFDIR="${VMROOT}/.config/"
 _DNSMASQDIR="${_CONFDIR}/dnsmasq/"
 
 if ! check_network "$name"; then

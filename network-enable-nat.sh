@@ -17,7 +17,7 @@ fi
 
 _CIDR="$(./vm switch list | awk "\$1 == \"$name\" { print \$4 }")"
 _INTERFACE="$(./vm switch list | awk "\$1 == \"$name\" { print \$3 }")"
-_CONFDIR="/zroot/vm/.config/"
+_CONFDIR="${VMROOT}/.config/"
 _PFNATDIR="$_CONFDIR/pf-nat/"
 
 mkdir -p "$_PFNATDIR"

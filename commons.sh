@@ -1,4 +1,6 @@
 PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
+VMROOT="$(zfs get -H -o value mountpoint $(sysrc vm_dir | awk -F: '{print $3}'))"
+export PATH VMROOT
 
 report_error(){
   jo status="error" message="${1:-"Unknown error"}"
@@ -14,7 +16,7 @@ trap report_error ERR;
 
 check_template(){
   plan="$1"
-  if [ -r "/zroot/vm/.templates/$plan.conf" ]; then
+  if [ -r "${VMROOT}/.templates/$plan.conf" ]; then
     errno=0
   else
     errno=1

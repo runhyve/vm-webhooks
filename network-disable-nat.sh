@@ -10,7 +10,7 @@ fi
 pushd /opt/runhyve/vm-bhyve > /dev/null
 
 name="$1"
-_CONFDIR="/zroot/vm/.config/"
+_CONFDIR="${VMROOT}/.config/"
 _PFNATDIR="$_CONFDIR/pf-nat/"
 _INTERFACE="$(./vm switch list | awk "\$1 == \"$name\" { print \$3 }")"
 
