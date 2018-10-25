@@ -33,6 +33,6 @@ if ! check_network "$network"; then
   report_error "Network ${network} doesn't exist"
 fi
 
-bash _vm-create.sh &
+echo "$(pwd)/_vm-create.sh" | at now > /dev/null 2>&1
 
 report_success
