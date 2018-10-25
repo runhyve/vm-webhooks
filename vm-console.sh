@@ -14,4 +14,4 @@ password="$(pwgen -ns 32 1)"
 
 echo "{\"port\": \"$port\",  \"user\": \"$user\", \"password\": \"$password\"}"
 
-gotty --once -w -a 192.168.0.199 -p "$port" --max-connection 1 -c "$user:$password" --timeout 120  vm console "$vm" > /dev/null 2>&1 &
+gotty --once -w -a 127.0.0.1 -p "$port" --max-connection 1 -c "$user:$password" --timeout 120  vm console "$vm" > /dev/null 2>&1 &
