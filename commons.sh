@@ -25,7 +25,7 @@ check_template(){
 check_img(){
   pushd /opt/runhyve/vm-bhyve > /dev/null
   img="$1"
-  if [ ! -z "$(./vm img | awk "\$1 == \"$img\" { print }")" ]; then
+  if [ ! -z "$(./vm img | awk "\$2 == \"$img\" { print }")" ]; then
     errno=0
   else
     errno=1
