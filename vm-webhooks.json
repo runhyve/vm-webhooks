@@ -1,5 +1,11 @@
 [
   {
+    "id": "health",
+    "execute-command": "/opt/runhyve/vm-webhooks/health.sh",
+    "command-working-directory": "/opt/runhyve/vm-webhooks/",
+    "include-command-output-in-response": true
+  },
+  {
     "id": "console",
     "execute-command": "/opt/runhyve/vm-webhooks/vm-console.sh",
     "command-working-directory": "/opt/runhyve/vm-webhooks/",
