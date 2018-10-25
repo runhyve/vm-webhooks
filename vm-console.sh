@@ -8,7 +8,7 @@ fi
 
 vm="$1"
 
-port=$((1000+$RANDOM%100)) # todo: check if port is free
+port=$((40000+$RANDOM%1000)) # todo: check if port is free
 user="$(pwgen -ns 12 1)"
 password="$(pwgen -ns 32 1)"
 
