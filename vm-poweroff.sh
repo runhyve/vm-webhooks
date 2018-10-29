@@ -14,8 +14,12 @@ if ! check_vm "$name"; then
   report_error "Virtual machine ${name} doesn't exist"
 fi
 
+if get_vm_status "$name" != "Running"; then
+  report_error "Virtual machine ${name} is not running"
+fi
+
 pushd /opt/runhyve/vm-bhyve > /dev/null
-message="$(./vm -f poweroff "$name" 2>&1)"
+message="$(./vm poweroff -f "$name" 2>&1)"
 
 if [ $? -ne 0 ]; then
   report_error "$message"
