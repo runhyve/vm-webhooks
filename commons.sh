@@ -71,8 +71,6 @@ get_vm_status(){
   fi
   pushd /opt/runhyve/vm-bhyve > /dev/null
   status="$(./vm list | awk "\$1 == \"$name\" { print \$8 }")"
-  errno=$?
   popd > /dev/null
   echo "$status"
-  return $errno
 }

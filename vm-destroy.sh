@@ -13,7 +13,7 @@ if ! check_vm "$name"; then
   report_error "Virtual machine ${name} doesn't exist"
 fi
 
-if get_vm_status "$name" == "Running"; then
+if [ "$(get_vm_status "$name")" == "Running" ]; then
   report_error "${name} is in state running. Can't destroy."
 fi
 
