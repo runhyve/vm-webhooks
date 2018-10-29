@@ -14,9 +14,12 @@ if ! check_vm "$name"; then
   report_error "Virtual machine ${name} doesn't exist"
 fi
 
+if get_vm_status "$name" == "Running"; then
+  report_error "${name} is in state running. Can't destroy."
+fi
+
 pushd /opt/runhyve/vm-bhyve > /dev/null
 ./vm destroy -f "$name" || true # wrkaround for vm returning always false
-
 popd > /dev/null
 
 if ! check_vm "$name"; then
