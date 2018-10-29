@@ -79,3 +79,9 @@ python setup.py install
 ifconfig igb0 inet 169.254.169.254/32 add
 mdserver &
 ```
+
+If you want to use md_server within your home network then additional route should be pushed with DHCP.
+It can be done with dnsmasq:
+`
+dhcp-option=121,169.254.169.254,<IP of host with md_server>
+`
