@@ -62,3 +62,20 @@ $ jo -p name=webhook-vm | curl -s -X POST http://localhost:9090/vm/console -H 'C
 This will allow you to connect to serial console with web browser: http://localhost:1021/
 
 Note: by default gotty works without TLS.
+
+### Cloud-init metadata server
+
+Install dependencies:
+`pkg install python3 py36-pip py36-virtualenv libvirt`
+Clone project:
+`git clone https://github.com/sjjf/md_server /opt/runhyve/md_server`
+Install it:
+```
+virtualenvi-3.6 /opt/runhve/md_server_virtualenv
+source /opt/runhyve/md_server_virtualenv/bin/activate
+pip install bottle libvirt-python
+cd /opt/runhyve/md_server
+python setup.py install
+ifconfig igb0 inet 169.254.169.254/32 add
+mdserver &
+```
