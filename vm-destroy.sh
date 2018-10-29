@@ -1,5 +1,4 @@
 #!/usr/local/bin/bash
-set -x
 . commons.sh
 
 if [ -v $1 ]; then
