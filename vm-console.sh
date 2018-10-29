@@ -12,6 +12,6 @@ port=$((40000+$RANDOM%1000)) # todo: check if port is free
 user="$(pwgen -ns 12 1)"
 password="$(pwgen -ns 32 1)"
 
-echo "{\"port\": \"$port\",  \"user\": \"$user\", \"password\": \"$password\"}"
+echo "{\"status\": \"success\", \"port\": \"$port\",  \"user\": \"$user\", \"password\": \"$password\"}"
 
 gotty --once -w -a 127.0.0.1 -p "$port" --max-connection 1 -c "$user:$password" --timeout 120  vm console "$vm" > /dev/null 2>&1 &
