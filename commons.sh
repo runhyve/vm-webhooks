@@ -2,9 +2,14 @@ PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 VMROOT="$(zfs get -H -o value mountpoint $(sysrc vm_dir | awk -F: '{print $3}'))"
 export PATH VMROOT
 
+catch_error(){
+  jo status="error" message="Unknown error occured"
+  exit 2
+}
+
 report_error(){
   jo status="error" message="${1:-"Unknown error"}"
-  exit 2
+  exit 0
 }
 
 report_success(){
@@ -12,7 +17,7 @@ report_success(){
   exit 0
 }
 
-trap report_error ERR;
+trap catch_error ERR;
 
 check_template(){
   plan="$1"
