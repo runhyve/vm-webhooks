@@ -63,3 +63,16 @@ check_network(){
   popd > /dev/null
   return $errno
 }
+
+get_vm_status(){
+  name="$1"
+  if ! check_vm "$name"; then
+    report_error "Virtual machine ${name} doesn't exist"
+  fi
+  pushd /opt/runhyve/vm-bhyve > /dev/null
+  status="$(./vm list | awk "\$1 == \"$name\" { print \$8 }")"
+  errno=$?
+  popd > /dev/null
+  echo "$status"
+  return $errno
+}
