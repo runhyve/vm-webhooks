@@ -6,12 +6,20 @@ if [ -v "$1" ]; then
   exit 2
 fi
 
-vm="$1"
+name="$1"
+
+if ! check_vm "$name"; then
+  report_error "Virtual machine ${name} doesn't exist"
+fi
+
+if [ "$(get_vm_status "$name")" != "Running" ]; then
+  report_error "Virtual machine is not running"
+fi
 
 port=$((40000+$RANDOM%1000)) # todo: check if port is free
 user="$(pwgen -ns 12 1)"
 password="$(pwgen -ns 32 1)"
 
-echo "{\"status\": \"success\", \"port\": \"$port\",  \"user\": \"$user\", \"password\": \"$password\"}"
+gotty --once -w -a 127.0.0.1 -p "$port" --max-connection 1 -c "$user:$password" --timeout 120  vm console "$name" > /dev/null 2>&1 &
 
-gotty --once -w -a 127.0.0.1 -p "$port" --max-connection 1 -c "$user:$password" --timeout 120  vm console "$vm" > /dev/null 2>&1 &
+report_success "{\"port\": \"$port\",  \"user\": \"$user\", \"password\": \"$password\"}"
