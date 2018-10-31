@@ -33,6 +33,10 @@ if ! check_network "$network"; then
   report_error "Network ${network} doesn't exist"
 fi
 
-echo "$(pwd)/_vm-create.sh" | at now > /dev/null 2>&1
+TID="$(ts "$(pwd)/_vm-create.sh")"
 
-report_success
+if [ -z "$TID"]; then
+  report_error "Something went wrong. Couldn't get task id from Taks Spooler"
+else
+  report_success "$(jo taskid="$TID")"
+fi
