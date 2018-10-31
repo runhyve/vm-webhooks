@@ -180,5 +180,17 @@
         "name": "name"
       }
     ]
+  },
+  {
+    "id": "ts-get-task",
+    "execute-command": "/opt/runhyve/vm-webhooks/ts-get-task.sh",
+    "command-working-directory": "/opt/runhyve/vm-webhooks/",
+    "include-command-output-in-response": true,
+    "pass-arguments-to-command": [
+      {
+        "source": "payload",
+        "name": "taskid"
+      }
+    ]
   }
 ]
