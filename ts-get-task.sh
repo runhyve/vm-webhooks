@@ -19,8 +19,12 @@ fi
 
 t_state="$(echo "$task" | awk '{ print $2 }')"
 t_log="$(echo "$task" | awk '{ print $3 }')"
-t_elevel="$(echo "$task" | awk '{ print $4 }')"
-t_times="$(echo "$task" | awk '{ print $5 }')"
-t_command="$(echo "$task" | awk '{ print $6 }')"
+if [ "$t_state" == "finished" ]; then
+  t_elevel="$(echo "$task" | awk '{ print $4 }')"
+  t_times="$(echo "$task" | awk '{ print $5 }')"
+  t_command="$(echo "$task" | awk '{ print $6 }')"
+  report_success "$(jo state="$t_state" log="$t_log" elevel="$t_elevel" times="$t_times" command="$t_command")"
+else
+  report_success "$(jo state="$t_state" log="$t_log")"
+fi
 
-report_success "$(jo state="$t_state" log="$t_log" elevel="$t_elevel" times="$t_times" command="$t_command")"
