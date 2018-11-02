@@ -35,7 +35,7 @@ fi
 
 TID="$(ts "$(pwd)/_vm-create.sh")"
 
-if [ -z "$TID"]; then
+if [ -z "$TID" ]; then
   report_error "Something went wrong. Couldn't get task id from Taks Spooler"
 else
   report_success "$(jo taskid="$TID")"
