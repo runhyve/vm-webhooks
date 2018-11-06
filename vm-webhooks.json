@@ -192,5 +192,17 @@
         "name": "taskid"
       }
     ]
+  },
+  {
+    "id": "ts-list-tasks",
+    "execute-command": "/opt/runhyve/vm-webhooks/ts-list-tasks.sh",
+    "command-working-directory": "/opt/runhyve/vm-webhooks/",
+    "include-command-output-in-response": true,
+    "pass-arguments-to-command": [
+      {
+        "source": "payload",
+        "name": "taskid"
+      }
+    ]
   }
 ]
