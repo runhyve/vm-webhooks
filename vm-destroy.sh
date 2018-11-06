@@ -13,12 +13,13 @@ if ! check_vm "$name"; then
   report_error "Virtual machine ${name} doesn't exist"
 fi
 
-if [ "$(get_vm_status "$name")" == "Running" ]; then
-  report_error "${name} is in state running. Can't destroy."
+state="$(get_vm_status "$name")"
+if [ "$state" != "Stopped" ]; then
+  report_error "Virtual machine ${name} is in state ${state}. Can't destroy unless it's stopped."
 fi
 
 pushd /opt/runhyve/vm-bhyve > /dev/null
-./vm destroy -f "$name" || true # wrkaround for vm returning always false
+./vm destroy -f "$name"
 popd > /dev/null
 
 if ! check_vm "$name"; then
