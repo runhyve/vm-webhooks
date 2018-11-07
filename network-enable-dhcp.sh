@@ -36,7 +36,7 @@ dhcp-leasefile=${_LEASEFILE}
 dhcp-option=6,${MINADDR}
 EOF
 
-service dnsmasq restart
+service dnsmasq restart > /dev/null
 
 popd > /dev/null
 
