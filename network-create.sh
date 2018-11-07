@@ -14,8 +14,11 @@ if check_network "$network"; then
   report_error "Network ${network} doesn't exist"
 fi
 
+export "$(ipcalc --minaddr "$cidr")"
+export "$(ipcalc --prefix "$cidr")"
+
 pushd /opt/runhyve/vm-bhyve > /dev/null
-./vm switch create -a "$cidr" "$name"
+./vm switch create -a "${MINADDR}/${PREFIX}" "$name"
 popd > /dev/null
 
 report_success
