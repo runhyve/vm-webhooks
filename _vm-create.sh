@@ -9,4 +9,4 @@ if [ "$network" != "public" ]; then
   sysrc -f "/zroot/vm/${name}/${name}.conf" network0_switch="$network"
 fi
 popd
-return_success
+report_success
