@@ -27,6 +27,7 @@ touch /zroot/vm/.config/pf-nat.conf
 echo 'pf_enable="YES"' >> /etc/rc.conf
 service pf start
 service webhook start
+echo 'net.inet.ip.forwarding=1' >> /etc/sysctl.conf
 ```
 
 Note: Before exposing webhook service to the world please secure it properly.
