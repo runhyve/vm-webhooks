@@ -15,15 +15,21 @@ _PFNATDIR="$_CONFDIR/pf-nat/"
 _INTERFACE="$(./vm switch list | awk "\$1 == \"$name\" { print \$3 }")"
 
 if ! check_network "$name"; then
-  report_error "Network ${network} doesn't exist"
+  report_error "Network ${name} doesn't exist"
 fi
 
 mkdir -p "$_PFNATDIR"
 
-rm "$_PFNATDIR/${_INTERFACE}_pf-nat.conf"
+if [ -r "$_PFNATDIR/${_INTERFACE}_pf-nat.conf" ]; then
+  rm -f "$_PFNATDIR/${_INTERFACE}_pf-nat.conf"
+else
+  report_success "Nat was not enabled for network $name"
+fi
 
 for natfile in $_PFNATDIR/*_pf-nat.conf; do
-  cat "$natfile" || true
+  if [ -r "$natfile" ]; then
+    cat "$natfile"
+  fi
 done > "$_CONFDIR/pf-nat.conf"
 
 pfctl -f /etc/pf.conf
