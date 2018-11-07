@@ -11,8 +11,8 @@ pushd /opt/runhyve/vm-bhyve > /dev/null
 
 name="$1"
 
-if ! check_network "$network"; then
-  report_error "Network ${network} doesn't exist"
+if ! check_network "$name"; then
+  report_error "Network ${name} doesn't exist"
 fi
 
 _CIDR="$(./vm switch list | awk "\$1 == \"$name\" { print \$4 }")"
