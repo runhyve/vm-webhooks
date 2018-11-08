@@ -13,10 +13,23 @@ if ! check_network "$name"; then
   report_error "Network $name doesn't exist"
 fi
 
-./network-disable-dhcp.sh "$name" || true
-./network-disable-nat.sh "$name" || true
+./network-disable-dhcp.sh "$name" > /dev/null || true
+./network-disable-nat.sh "$name" > /dev/null || true
 pushd /opt/runhyve/vm-bhyve > /dev/null
-./vm switch destroy "$name"
+_CONFDIR="${VMROOT}/.config/"
+_PFDIR="$_CONFDIR/pf-security/"
+_INTERFACE="$(./vm switch list | awk "\$1 == \"$name\" { print \$3 }")"
+rm -f "$_PFDIR/${_INTERFACE}_pf-security.conf"
+
+for pffile in $_PFDIR/*_pf-security.conf; do
+  if [ -r "$pffile" ]; then
+    cat "$pffile"
+  fi
+done > "$_CONFDIR/pf-security.conf"
+
+pfctl -f /etc/pf.conf
+
+./vm switch destroy "$name" || true # vm incorrectly returns 1
 popd > /dev/null
 
 if ! check_network "$name"; then
