@@ -9,8 +9,6 @@ if [ -v $1 ]; then
   exit 2
 fi
 
-pushd /opt/runhyve/vm-bhyve > /dev/null
-
 name="$1"
 _CONFDIR="${VMROOT}/.config/"
 _DNSMASQDIR="${_CONFDIR}/dnsmasq/"
@@ -19,9 +17,11 @@ if ! check_network "$name"; then
   report_error "Network ${name} doesn't exist"
 fi
 
-rm  "${_DNSMASQDIR}/${name}.conf"
-service dnsmasq restart
+if [ -r "${_DNSMASQDIR}/${name}.conf" ]; then
+  rm  "${_DNSMASQDIR}/${name}.conf"
+  service dnsmasq restart > /dev/null
+  report_success
+else
+  report_success "DHCP is not enabled for this network"
+fi
 
-popd > /dev/null
-
-report_success
