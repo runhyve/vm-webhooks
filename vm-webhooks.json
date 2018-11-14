@@ -46,6 +46,22 @@
     ]
   },
   {
+    "id": "create",
+    "execute-command": "/opt/runhyve/vm-webhooks/vm-add-network.sh",
+    "command-working-directory": "/opt/runhyve/vm-webhooks/",
+    "include-command-output-in-response": true,
+    "pass-arguments-to-command": [
+      {
+        "source": "payload",
+        "name": "machine"
+      },
+      {
+        "source": "payload",
+        "name": "network"
+      }
+    ]
+  },
+  {
     "id": "start",
     "execute-command": "/opt/runhyve/vm-webhooks/vm-start.sh",
     "command-working-directory": "/opt/runhyve/vm-webhooks/",
