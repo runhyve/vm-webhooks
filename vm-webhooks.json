@@ -46,7 +46,7 @@
     ]
   },
   {
-    "id": "create",
+    "id": "add-network",
     "execute-command": "/opt/runhyve/vm-webhooks/vm-add-network.sh",
     "command-working-directory": "/opt/runhyve/vm-webhooks/",
     "include-command-output-in-response": true,
