@@ -19,6 +19,10 @@ report_success(){
 
 trap catch_error ERR;
 
+if [ "$(id -u)" != "0" ]; then
+  report_error "Scripts requires root permissions"
+fi
+
 check_template(){
   plan="$1"
   if [ -r "${VMROOT}/.templates/$plan.conf" ]; then
