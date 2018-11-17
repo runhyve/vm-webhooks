@@ -122,6 +122,24 @@
     ]
   },
   {
+    "id": "img-add",
+    "execute-command": "/opt/runhyve/vm-webhooks/img-add.sh",
+    "command-working-directory": "/opt/runhyve/vm-webhooks/",
+    "include-command-output-in-response": true,
+    "pass-arguments-to-command": [
+      {
+        "source": "payload",
+        "name": "image"
+      }
+    ]
+  },
+  {
+    "id": "img-list",
+    "execute-command": "/opt/runhyve/vm-webhooks/img-list.sh",
+    "command-working-directory": "/opt/runhyve/vm-webhooks/",
+    "include-command-output-in-response": true
+  },
+  {
     "id": "net-create",
     "execute-command": "/opt/runhyve/vm-webhooks/network-create.sh",
     "command-working-directory": "/opt/runhyve/vm-webhooks/",
