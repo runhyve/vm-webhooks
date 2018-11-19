@@ -134,6 +134,22 @@
     ]
   },
   {
+    "id": "snapshot-delete",
+    "execute-command": "/opt/runhyve/vm-webhooks/vm-snapshot-delete.sh",
+    "command-working-directory": "/opt/runhyve/vm-webhooks/",
+    "include-command-output-in-response": true,
+    "pass-arguments-to-command": [
+      {
+        "source": "payload",
+        "name": "name"
+      },
+      {
+        "source": "payload",
+        "name": "snapname"
+      }
+    ]
+  },
+  {
     "id": "snapshot-list",
     "execute-command": "/opt/runhyve/vm-webhooks/vm-snapshot-list.sh",
     "command-working-directory": "/opt/runhyve/vm-webhooks/",
