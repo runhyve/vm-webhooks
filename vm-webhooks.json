@@ -49,6 +49,10 @@
       },
       {
         "source": "payload",
+        "name": "disk"
+      },
+      {
+        "source": "payload",
         "name": "network"
        }
     ]
