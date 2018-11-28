@@ -1,7 +1,7 @@
 #!/usr/local/bin/bash
 . commons.sh
 
-if [ -v $1 ] || [ -v $2 ] || [ -v $3 ] || [ -v $4 ]; then
+if [ -v $1 ] || [ -v $2 ] || [ -v $3 ] || [ -v $4 ] || [ -v $5 ] || [ -v $6 ]; then
   echo "Usage: $0 <system> <plan> <name> <image> [network]" > /dev/stderr
   echo "Example: $0 freebsd 1C-1GB-50HDD FreeBSD-VM FreeBSD-11.2-RELEASE-amd64.raw" > /dev/stderr
   exit 2
@@ -11,11 +11,13 @@ system="$1"
 plan="$2"
 name="$3"
 image="$4"
-network="${5:-public}"
+cpu="$5"
+memory="$6"
+network="${7:-public}"
 
 _template="${system}-${plan}"
 
-export system plan name image network _template
+export system plan name image cpu memory network _template
 
 if ! check_template "$_template"; then
   report_error "Coulnd't find template for plan ${_template}"

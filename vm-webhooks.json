@@ -41,6 +41,14 @@
       },
       {
         "source": "payload",
+        "name": "cpu"
+      },
+      {
+        "source": "payload",
+        "name": "memory"
+      },
+      {
+        "source": "payload",
         "name": "network"
        }
     ]
