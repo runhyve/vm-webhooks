@@ -29,7 +29,7 @@
       },
       {
         "source": "payload",
-        "name": "plan"
+        "name": "template"
       },
       {
         "source": "payload",
