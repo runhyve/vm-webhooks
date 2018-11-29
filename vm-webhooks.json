@@ -216,6 +216,18 @@
     ]
   },
   {
+    "id": "net-create-vxlan",
+    "execute-command": "/opt/runhyve/vm-webhooks/network-create-vxlan.sh",
+    "command-working-directory": "/opt/runhyve/vm-webhooks/",
+    "include-command-output-in-response": true,
+    "pass-arguments-to-command": [
+      {
+        "source": "payload",
+        "name": "vni"
+      }
+    ]
+  },
+  {
     "id": "net-destroy",
     "execute-command": "/opt/runhyve/vm-webhooks/network-destroy.sh",
     "command-working-directory": "/opt/runhyve/vm-webhooks/",

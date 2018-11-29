@@ -78,3 +78,19 @@ get_vm_status(){
   popd > /dev/null
   echo "$status"
 }
+
+vni_to_multicast(){
+  # vxlan supports up to 16777215 but we had to reduce this number
+  # because of FreeBSD limitation to 32749
+  max_vni=32749
+  if [ $1 -gt $max_vni ]; then
+    report_error "VNI too large. Max is ${max_vni}".
+  fi
+
+  hex=`printf "%06x" ${1}`
+  printf "239"
+  for pos in 1-2 3-4 5-6; do
+    printf ".%d" "0x`echo "${hex}" | cut -c ${pos}`"
+  done
+  printf "\n"
+}

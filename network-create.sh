@@ -11,7 +11,7 @@ name="$1"
 cidr="$2"
 
 if check_network "$network"; then
-  report_error "Network ${network} doesn't exist"
+  report_error "Network ${network} already exists"
 fi
 
 export "$(ipcalc --minaddr "$cidr")"
