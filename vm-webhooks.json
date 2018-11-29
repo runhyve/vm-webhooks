@@ -25,10 +25,6 @@
     "pass-arguments-to-command": [
       {
         "source": "payload",
-        "name": "system"
-      },
-      {
-        "source": "payload",
         "name": "template"
       },
       {

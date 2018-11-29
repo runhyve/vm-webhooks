@@ -2,21 +2,20 @@
 . commons.sh
 
 if [ -v $1 ] || [ -v $2 ] || [ -v $3 ] || [ -v $4 ] || [ -v $5 ] || [ -v $6 ] || [ -v $7 ]; then
-  echo "Usage: $0 <system> <template> <name> <image> <cpu> <memory> <disk> [network]" > /dev/stderr
-  echo "Example: $0 freebsd 1C-1GB-50HDD FreeBSD-VM FreeBSD-11.2-RELEASE-amd64.raw" > /dev/stderr
+  echo "Usage: $0 <template> <name> <image> <cpu> <memory> <disk> [network]" > /dev/stderr
+  echo "Example: $0 freebsd FreeBSD-VM FreeBSD-11.2-RELEASE-amd64.raw" > /dev/stderr
   exit 2
 fi
 
-system="$1"
-template="$2"
-name="$3"
-image="$4"
-cpu="$5"
-memory="$6"
-disk="$7"
-network="${8:-public}"
+template="$1"
+name="$2"
+image="$3"
+cpu="$4"
+memory="$5"
+disk="$6"
+network="${7:-public}"
 
-export system template name image cpu memory network disk _template
+export template name image cpu memory network disk _template
 
 if ! check_template "$template"; then
   report_error "Coulnd't find template ${template}"
