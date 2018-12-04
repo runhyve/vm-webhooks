@@ -2,6 +2,15 @@ PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 VMROOT="$(zfs get -H -o value mountpoint $(sysrc vm_dir | awk -F: '{print $3}'))"
 export PATH VMROOT
 
+start_taskspooler(){
+  pid="$(pgrep ts)"
+  if [ $? -ne 0 ]; then
+    ts > /dev/null
+  fi
+}
+
+start_taskspooler
+
 catch_error(){
   jo status="error" message="Unknown error occured"
   exit 2
