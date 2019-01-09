@@ -5,8 +5,6 @@ For more informations please refer to documentation of these services:
 https://github.com/adnanh/webhook
 https://github.com/churchers/vm-bhyve 
 
-Note: It requires forked version of vm-bhyve until this PR is merged: https://github.com/churchers/vm-bhyve/pull/262
-
 ## Installation
 
 See https://gitlab.com/runhyve/chef-hypervisor
