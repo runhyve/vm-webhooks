@@ -49,7 +49,7 @@ Clone project:
 `git clone https://github.com/sjjf/md_server /opt/runhyve/md_server`
 Install it:
 ```
-virtualenvi-3.6 /opt/runhve/md_server_virtualenv
+virtualenv-3.6 /opt/runhyve/md_server_virtualenv
 source /opt/runhyve/md_server_virtualenv/bin/activate
 pip install bottle libvirt-python
 cd /opt/runhyve/md_server
