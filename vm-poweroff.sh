@@ -13,7 +13,7 @@ if ! check_vm "$name"; then
   report_error "Virtual machine ${name} doesn't exist"
 fi
 
-if [ "$(get_vm_status "$name")" != "Running" ]; then
+if [ "$(get_vm_status "$name")" != "Running" ] || [ "$(get_vm_status "$name")" != "Bootloader" ]; then
   report_error "Virtual machine ${name} is not running"
 fi
 
