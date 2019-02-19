@@ -18,10 +18,10 @@ if [ "$(get_vm_status "$name")" != "Running" ] && [ "$(get_vm_status "$name")" !
 fi
 
 pushd /opt/runhyve/vm-bhyve > /dev/null
-if [ "$(get_vm_status "$name")" != "Running" ]; then
+if [ "$(get_vm_status "$name")" == "Running" ]; then
   message="$(./vm poweroff -f "$name" 2>&1)"
-elif [ "$(get_vm_status "$name")" != "Bootloader" ]; then
-  message="$(./vm stop "$name" 2>&1)"
+elif [ "$(get_vm_status "$name")" == "Bootloader" ]; then
+  message="$(echo y | ./vm stop "$name" 2>&1)"
 fi
 
 if [ $? -ne 0 ]; then
