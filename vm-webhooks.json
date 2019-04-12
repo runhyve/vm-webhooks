@@ -50,10 +50,11 @@
       {
         "source": "payload",
         "name": "network"
-       },
-       "source": "payload",
-       "name": "ssh_public_key"
-       }
+      },
+      {
+        "source": "payload",
+        "name": "ssh_public_key"
+      }
     ]
   },
   {
