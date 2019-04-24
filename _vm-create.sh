@@ -2,8 +2,6 @@
 set -x
 . /opt/runhyve/vm-webhooks/commons.sh
 
-pushd /opt/runhyve/vm-bhyve
-
 sshpk="/tmp/.sshpk.$$"
 
 OPTS=" -t $template -c $cpu -m $memory -i $image -s $disk -C "
@@ -13,7 +11,7 @@ if [ ! -z "$ssh_public_key" ]; then
   OPTS+=" -k $sshpk "
 fi
 
-./vm create $OPTS "$name"
+vm create $OPTS "$name"
 rm -f "$sshpk"
 
 if [ "$?" -ne 0 ]; then
@@ -23,5 +21,4 @@ fi
 if [ "$network" != "public" ]; then
   sysrc -f "/zroot/vm/${name}/${name}.conf" network0_switch="$network"
 fi
-popd
 report_success

@@ -7,16 +7,14 @@ if [ -v $1 ]; then
   exit 2
 fi
 
-pushd /opt/runhyve/vm-bhyve > /dev/null
-
 name="$1"
 
 if ! check_network "$name"; then
   report_error "Network ${name} doesn't exist"
 fi
 
-_CIDR="$(./vm switch list | awk "\$1 == \"$name\" { print \$4 }")"
-_INTERFACE="$(./vm switch list | awk "\$1 == \"$name\" { print \$3 }")"
+_CIDR="$(vm switch list | awk "\$1 == \"$name\" { print \$4 }")"
+_INTERFACE="$(vm switch list | awk "\$1 == \"$name\" { print \$3 }")"
 export $(ipcalc --minaddr "$_CIDR")
 export $(ipcalc --maxaddr "$_CIDR")
 _NETRANGE="${MINADDR},${MAXADDR},24h"
@@ -37,7 +35,5 @@ dhcp-option=6,${MINADDR}
 EOF
 
 service dnsmasq restart > /dev/null
-
-popd > /dev/null
 
 report_success

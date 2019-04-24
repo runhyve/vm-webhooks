@@ -18,14 +18,10 @@ if [ "$state" != "Stopped" ]; then
   report_error "Please shutdown ${name} before creating a snapshot. This machine is currently in state ${state}."
 fi
 
-pushd /opt/runhyve/vm-bhyve > /dev/null
-
-message="$(./vm snapshot "$name" 2>&1 )"
+message="$(vm snapshot "$name" 2>&1 )"
 
 if [ $? -ne 0 ]; then
   report_error "$message"
 else 
   report_success "$message"
 fi
-
-popd > /dev/null

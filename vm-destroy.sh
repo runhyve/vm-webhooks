@@ -18,9 +18,7 @@ if [ "$state" != "Stopped" ]; then
   report_error "Virtual machine ${name} is in state ${state}. Can't destroy unless it's stopped."
 fi
 
-pushd /opt/runhyve/vm-bhyve > /dev/null
-./vm destroy -f "$name"
-popd > /dev/null
+vm destroy -f "$name"
 
 if ! check_vm "$name"; then
   report_success "Virtual machine deleted"

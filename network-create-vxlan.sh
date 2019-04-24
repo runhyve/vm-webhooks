@@ -15,8 +15,6 @@ if check_network "$network"; then
 fi
 
 export mcast="$(vni_to_multicast "$vxlanid")"
-pushd /opt/runhyve/vm-bhyve > /dev/null
-./vm switch create -t vxlan -n "$vxlanid" -i br0 "$switchname" || true
-popd > /dev/null
+vm switch create -t vxlan -n "$vxlanid" -i br0 "$switchname" || true
 
 report_success

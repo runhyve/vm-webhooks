@@ -17,13 +17,10 @@ if [ "$(get_vm_status "$name")" != "Running" ]; then
   report_error "Virtual machine is not running"
 fi
 
-pushd /opt/runhyve/vm-bhyve > /dev/null
-message="$(./vm stop "$name" 2>&1)"
+message="$(vm stop "$name" 2>&1)"
 
 if [ $? -ne 0 ]; then
   report_error "$message"
 else
   report_success "$message"
 fi
-
-popd > /dev/null

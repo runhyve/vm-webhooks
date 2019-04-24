@@ -20,8 +20,6 @@ if ! check_network "$network"; then
   report_error "Network ${network} doesn't exist"
 fi
 
-pushd /opt/runhyve/vm-bhyve > /dev/null
-./vm add -d network -s "$network" "$machine"
-popd > /dev/null
+vm add -d network -s "$network" "$machine"
 
 report_success "$machine attached to $network successfuly"

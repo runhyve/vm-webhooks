@@ -7,16 +7,14 @@ if [ -v $1 ]; then
   exit 2
 fi
 
-pushd /opt/runhyve/vm-bhyve > /dev/null
-
 name="$1"
 
 if ! check_network "$name"; then
   report_error "Network ${name} doesn't exist"
 fi
 
-_CIDR="$(./vm switch list | awk "\$1 == \"$name\" { print \$4 }")"
-_INTERFACE="$(./vm switch list | awk "\$1 == \"$name\" { print \$3 }")"
+_CIDR="$(vm switch list | awk "\$1 == \"$name\" { print \$4 }")"
+_INTERFACE="$(vm switch list | awk "\$1 == \"$name\" { print \$3 }")"
 _CONFDIR="${VMROOT}/.config/"
 _PFNATDIR="$_CONFDIR/pf-nat/"
 
@@ -29,7 +27,5 @@ for natfile in $_PFNATDIR/*_pf-nat.conf; do
 done > "$_CONFDIR/pf-nat.conf"
 
 pfctl -f /etc/pf.conf
-
-popd > /dev/null
 
 report_success

@@ -8,8 +8,6 @@ fi
 
 . /opt/runhyve/vm-webhooks/commons.sh
 
-pushd /opt/runhyve/vm-bhyve
-./vm img "$image"
+vm img "$image"
 
-popd
 report_success

@@ -20,14 +20,10 @@ if [ -z "$snapshot" ]; then
   report_error "Snapshot ${snapshot} not found"
 fi
 
-pushd /opt/runhyve/vm-bhyve > /dev/null
-
-message="$(./vm destroy "${name}@${snapname}" 2>&1 )"
+message="$(vm destroy "${name}@${snapname}" 2>&1 )"
 
 if [ $? -ne 0 ]; then
   report_error "$message"
 else 
   report_success "$message"
 fi
-
-popd > /dev/null

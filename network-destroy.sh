@@ -15,10 +15,9 @@ fi
 
 ./network-disable-dhcp.sh "$name" > /dev/null || true
 ./network-disable-nat.sh "$name" > /dev/null || true
-pushd /opt/runhyve/vm-bhyve > /dev/null
 _CONFDIR="${VMROOT}/.config/"
 _PFDIR="$_CONFDIR/pf-security/"
-_INTERFACE="$(./vm switch list | awk "\$1 == \"$name\" { print \$3 }")"
+_INTERFACE="$(vm switch list | awk "\$1 == \"$name\" { print \$3 }")"
 rm -f "$_PFDIR/${_INTERFACE}_pf-security.conf"
 
 for pffile in $_PFDIR/*_pf-security.conf; do
@@ -29,8 +28,7 @@ done > "$_CONFDIR/pf-security.conf"
 
 pfctl -f /etc/pf.conf
 
-./vm switch destroy "$name" || true # vm incorrectly returns 1
-popd > /dev/null
+vm switch destroy "$name" || true # vm incorrectly returns 1
 
 if ! check_network "$name"; then
   report_success "Network ${name} deleted"

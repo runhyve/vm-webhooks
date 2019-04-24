@@ -43,37 +43,31 @@ check_template(){
 }
 
 check_img(){
-  pushd /opt/runhyve/vm-bhyve > /dev/null
   img="$1"
-  if [ ! -z "$(./vm img | awk "\$2 == \"$img\" { print }")" ]; then
+  if [ ! -z "$(vm img | awk "\$2 == \"$img\" { print }")" ]; then
     errno=0
   else
     errno=1
   fi
-  popd > /dev/null
   return $errno
 }
 check_vm(){
-  pushd /opt/runhyve/vm-bhyve > /dev/null
   vm="$1"  
-  if [ ! -z "$(./vm list | awk "\$1 == \"$vm\" { print }")" ]; then
+  if [ ! -z "$(vm list | awk "\$1 == \"$vm\" { print }")" ]; then
     errno=0
   else
     errno=1
   fi
-  popd > /dev/null
   return $errno
 }
 
 check_network(){
-  pushd /opt/runhyve/vm-bhyve > /dev/null
   network="$1"  
-  if [ ! -z "$(./vm switch list | awk "\$1 == \"$network\" { print }")" ]; then
+  if [ ! -z "$(vm switch list | awk "\$1 == \"$network\" { print }")" ]; then
     errno=0
   else
     errno=1
   fi
-  popd > /dev/null
   return $errno
 }
 
@@ -82,9 +76,7 @@ get_vm_status(){
   if ! check_vm "$name"; then
     report_error "Virtual machine ${name} doesn't exist"
   fi
-  pushd /opt/runhyve/vm-bhyve > /dev/null
-  status="$(./vm list | awk "\$1 == \"$name\" { print \$8 }")"
-  popd > /dev/null
+  status="$(vm list | awk "\$1 == \"$name\" { print \$8 }")"
   echo "$status"
 }
 

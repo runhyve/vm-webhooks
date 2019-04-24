@@ -17,13 +17,11 @@ fi
 export "$(ipcalc --minaddr "$cidr")"
 export "$(ipcalc --prefix "$cidr")"
 
-pushd /opt/runhyve/vm-bhyve > /dev/null
-./vm switch create -a "${MINADDR}/${PREFIX}" "$name"
+vm switch create -a "${MINADDR}/${PREFIX}" "$name"
 
 _CONFDIR="${VMROOT}/.config/"
 _PFDIR="$_CONFDIR/pf-security/"
-_INTERFACE="$(./vm switch list | awk "\$1 == \"$name\" { print \$3 }")"
-popd > /dev/null
+_INTERFACE="$(vm switch list | awk "\$1 == \"$name\" { print \$3 }")"
 
 mkdir -p "$_PFDIR"
 
