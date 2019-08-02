@@ -18,7 +18,7 @@ if [ "$(get_vm_status "$name")" != "Running" ] && [ "$(get_vm_status "$name")" !
 fi
 
 if [ "$(get_vm_status "$name")" == "Running" ]; then
-  message="$(vm -f poweroff "$name" 2>&1)"
+  message="$(vm poweroff -f "$name" 2>&1)"
 elif [ "$(get_vm_status "$name")" == "Bootloader" ]; then
   message="$(echo y | vm stop "$name" 2>&1)"
 fi
