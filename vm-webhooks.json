@@ -59,6 +59,10 @@
       },
       {
         "source": "payload",
+        "name": "ipv4"
+      },
+      {
+        "source": "payload",
         "name": "ssh_public_key"
       }
     ]
