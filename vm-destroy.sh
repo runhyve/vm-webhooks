@@ -18,10 +18,10 @@ if [ "$state" != "Stopped" ]; then
   report_error "Virtual machine ${name} is in state ${state}. Can't destroy unless it's stopped."
 fi
 
-vm destroy -f "$name"
+TID="$(ts vm destroy -f "$name")"
 
-if ! check_vm "$name"; then
-  report_success "Virtual machine deleted"
+if [ -z "$TID" ]; then
+  report_error "Something went wrong. Couldn't get task id from Task Spooler"
 else
-  report_error "Virtual machine not deleted"
+  report_success "$(jo taskid="$TID")"
 fi
