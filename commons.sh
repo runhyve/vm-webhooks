@@ -80,6 +80,21 @@ get_vm_status(){
   echo "$status"
 }
 
+get_locked_hv(){
+  name="$1"
+  if ! check_vm "$name"; then
+    report_error "Virtual machine ${name} doesn't exist"
+  fi
+
+  status="$(vm list | awk "\$1 == \"$name\" { print \$8 }")"
+  if [ "$status" != 'Locked' ]; then
+    report_error "Virtual machine ${name} is not in state Locked"
+  fi
+
+  locked_on="$(vm list | awk "\$1 == \"$name\" { print \$9 }" | sed -e "s#[\(\)]##g")"
+  echo "$locked_on"
+}
+
 vni_to_multicast(){
   # vxlan supports up to 16777215 but we had to reduce this number
   # because of FreeBSD limitation to 32749

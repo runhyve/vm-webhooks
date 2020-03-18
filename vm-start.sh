@@ -13,6 +13,13 @@ if ! check_vm "$name"; then
   report_error "Virtual machine ${name} doesn't exist"
 fi
 
+if [ "$(get_vm_status "$name")" = "Locked" ]; then
+  locked_on="$(get_locked_hv "$name")"
+  if [ $locked_on != "$(hostname)" ]; then
+    report_error "Virtual machine $name appears to be running on other hypervisor: $locked_on"
+  fi
+fi
+
 message="$(vm start "$name" 2>&1 )"
 
 if [ $? -ne 0 ]; then
