@@ -24,7 +24,7 @@ if ! check_template "$template"; then
 fi
 
 if ! check_img "$image"; then
-  report_error "Couldn't find imge ${image}"
+  report_error "Couldn't find image ${image}"
 fi
 
 if check_vm "$name"; then
@@ -38,7 +38,7 @@ fi
 TID="$(ts "$(pwd)/_vm-create.sh")"
 
 if [ -z "$TID" ]; then
-  report_error "Something went wrong. Couldn't get task id from Taks Spooler"
+  report_error "Something went wrong. Couldn't get task id from Task Spooler"
 else
   report_success "$(jo taskid="$TID")"
 fi
