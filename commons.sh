@@ -76,7 +76,7 @@ get_vm_status(){
   if ! check_vm "$name"; then
     report_error "Virtual machine ${name} doesn't exist"
   fi
-  status="$(vm list | awk "\$1 == \"$name\" { print \$8 }")"
+  status="$(vm list | awk -F"  " "\$1 == \"$name\" { print \$NF }" | xargs | awk "{print \$1}")"
   echo "$status"
 }
 
