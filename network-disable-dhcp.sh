@@ -18,10 +18,9 @@ if ! check_network "$name"; then
 fi
 
 if [ -r "${_DNSMASQDIR}/${name}.conf" ]; then
-  rm  "${_DNSMASQDIR}/${name}.conf"
+  rm "${_DNSMASQDIR}/${name}.conf"
   service dnsmasq restart > /dev/null
   report_success
 else
   report_success "DHCP is not enabled for this network"
 fi
-

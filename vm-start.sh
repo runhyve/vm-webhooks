@@ -1,7 +1,7 @@
 #!/usr/local/bin/bash
 . commons.sh
 
-if [ -v $1 ] ; then
+if [ -v $1 ]; then
   echo "Usage: $0 <name>" > /dev/stderr
   echo "Example: $0 FreeBSD-VM" > /dev/stderr
   exit 2
@@ -20,10 +20,10 @@ if [ "$(get_vm_status "$name")" = "Locked" ]; then
   fi
 fi
 
-message="$(vm start "$name" 2>&1 )"
+message="$(vm start "$name" 2>&1)"
 
 if [ $? -ne 0 ]; then
   report_error "$message"
-else 
+else
   report_success "$message"
 fi

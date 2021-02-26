@@ -1,9 +1,9 @@
 #!/usr/local/bin/bash
 . commons.sh
 
-trap error ERR;
+trap error ERR
 
-if [ -v $1 ] ; then
+if [ -v $1 ]; then
   echo "Usage: $0 <taskid>" > /dev/stderr
   echo "Example: $0 1337" > /dev/stderr
   exit 2
@@ -27,4 +27,3 @@ if [ "$t_state" == "finished" ]; then
 else
   report_success "$(jo state="$t_state" log="$t_log")"
 fi
-

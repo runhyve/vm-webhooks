@@ -1,9 +1,9 @@
 #!/usr/local/bin/bash
 . commons.sh
 
-trap error ERR;
+trap error ERR
 
-if [ -v $1 ] ; then
+if [ -v $1 ]; then
   echo "Usage: $0 <name>" > /dev/stderr
   echo "Example: $0 FreeBSD-VM" > /dev/stderr
   exit 2

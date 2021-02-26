@@ -1,7 +1,7 @@
 #!/usr/local/bin/bash
 . commons.sh
 
-if [ -v $1 ] ; then
+if [ -v $1 ]; then
   echo "Usage: $0 <name>" > /dev/stderr
   echo "Example: $0 FreeBSD-VM" > /dev/stderr
   exit 2
@@ -18,10 +18,10 @@ if [ "$state" != "Stopped" ]; then
   report_error "Please shutdown ${name} before creating a snapshot. This machine is currently in state ${state}."
 fi
 
-message="$(vm snapshot "$name" 2>&1 )"
+message="$(vm snapshot "$name" 2>&1)"
 
 if [ $? -ne 0 ]; then
   report_error "$message"
-else 
+else
   report_success "$message"
 fi

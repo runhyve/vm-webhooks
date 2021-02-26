@@ -23,7 +23,7 @@ mkdir -p "$_PFNATDIR"
 echo "nat on igb0 from ${_CIDR} to any -> (igb0)" > "$_PFNATDIR/${_INTERFACE}_pf-nat.conf"
 
 for natfile in $_PFNATDIR/*_pf-nat.conf; do
-	cat "$natfile"
+  cat "$natfile"
 done > "$_CONFDIR/pf-nat.conf"
 
 pfctl -f /etc/pf.conf

@@ -1,0 +1,10 @@
+stages:
+  - test
+
+shfmt:
+  image: mvdan/shfmt:v3.2.0-alpine
+  stage: test
+  before_script:
+    - shfmt -version
+  script:
+    - shfmt -i 2 -ci -sr -d .  # path to your shell scripts

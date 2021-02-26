@@ -1,7 +1,7 @@
 #!/usr/local/bin/bash
 . commons.sh
 
-trap error ERR;
+trap error ERR
 
 jo -a $(vm img | grep -v "DATASTORE" | while read line; do
   datastore="$(echo "$line" | awk '{ print $1 }')"

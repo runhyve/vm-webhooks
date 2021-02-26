@@ -1,8 +1,7 @@
 #!/usr/local/bin/bash
 . commons.sh
 
-trap error ERR;
-
+trap error ERR
 
 jo -a $(ts | grep -v "E-Level" | while read task; do
   t_id="$(echo "$task" | awk '{ print $1 }')"
