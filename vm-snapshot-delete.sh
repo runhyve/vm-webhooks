@@ -1,7 +1,7 @@
 #!/usr/local/bin/bash
 . commons.sh
 
-if [ -v $1 ] ; then
+if [ -v $1 ]; then
   echo "Usage: $0 <name> <snapshot>" > /dev/stderr
   echo "Example: $0 FreeBSD-VM 2018-11-18-11:08:57" > /dev/stderr
   exit 2
@@ -20,10 +20,10 @@ if [ -z "$snapshot" ]; then
   report_error "Snapshot ${snapshot} not found"
 fi
 
-message="$(vm destroy "${name}@${snapname}" 2>&1 )"
+message="$(vm destroy "${name}@${snapname}" 2>&1)"
 
 if [ $? -ne 0 ]; then
   report_error "$message"
-else 
+else
   report_success "$message"
 fi

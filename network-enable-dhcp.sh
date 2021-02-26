@@ -24,7 +24,7 @@ _LEASEFILE="${_DNSMASQDIR}/dnsmasq.${_INTERFACE}.leases"
 
 mkdir -p "$_DNSMASQDIR"
 
-cat <<EOF > "${_DNSMASQDIR}/${name}.conf"
+cat << EOF > "${_DNSMASQDIR}/${name}.conf"
 interface=${_INTERFACE}
 except-interface=lo0
 bind-interfaces

@@ -25,7 +25,7 @@ _INTERFACE="$(vm switch list | awk "\$1 == \"$name\" { print \$3 }")"
 
 mkdir -p "$_PFDIR"
 
-cat <<-EOF > "$_PFDIR/${_INTERFACE}_pf-security.conf"
+cat <<- EOF > "$_PFDIR/${_INTERFACE}_pf-security.conf"
 block in on "$_INTERFACE"
 pass out on "$_INTERFACE" inet from $cidr to any keep state
 EOF

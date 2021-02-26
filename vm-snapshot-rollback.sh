@@ -2,7 +2,7 @@
 set -x
 . commons.sh
 
-if [ -v $1 ] ; then
+if [ -v $1 ]; then
   echo "Usage: $0 <name>" > /dev/stderr
   echo "Example: $0 FreeBSD-VM" > /dev/stderr
   exit 2
@@ -26,6 +26,6 @@ message="$(vm rollback "${name}@${latest_snapshot}" 2>&1)"
 
 if [ $? -ne 0 ]; then
   report_error "$message"
-else 
+else
   report_success "Virtual machine ${name} rolled back to ${latest_snapshot}."
 fi
