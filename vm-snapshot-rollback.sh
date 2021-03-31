@@ -2,7 +2,7 @@
 set -x
 . commons.sh
 
-if [ -v $1 ]; then
+if [ -z "$1" ]; then
   echo "Usage: $0 <name>" > /dev/stderr
   echo "Example: $0 FreeBSD-VM" > /dev/stderr
   exit 2

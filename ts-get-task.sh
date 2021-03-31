@@ -3,7 +3,7 @@
 
 trap error ERR
 
-if [ -v $1 ]; then
+if ! [[ "$1" =~ ^[0-9]+$ ]]; then
   echo "Usage: $0 <taskid>" > /dev/stderr
   echo "Example: $0 1337" > /dev/stderr
   exit 2

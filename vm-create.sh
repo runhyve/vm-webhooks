@@ -1,7 +1,7 @@
 #!/usr/local/bin/bash
 . commons.sh
 
-if [ -v $1 ] || [ -v $2 ] || [ -v $3 ] || [ -v $4 ] || [ -v $5 ] || [ -v $6 ] || [ -v $7 ]; then
+if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ] || [ -z "$4" ] || [ -z "$5" ] || [ -z "$6" ]; then
   echo "Usage: $0 <template> <name> <image> <cpu> <memory> <disk> [network] [ipv4-conf] [ssh public key]" > /dev/stderr
   echo "Example: $0 freebsd FreeBSD-VM FreeBSD-11.2-RELEASE-amd64.raw" > /dev/stderr
   exit 2

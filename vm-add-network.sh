@@ -1,7 +1,7 @@
 #!/usr/local/bin/bash
 . commons.sh
 
-if [ -v $1 ] || [ -v $2 ]; then
+if [ -z "$1" ] || [ -z "$2" ]; then
   echo "Usage: $0 <machine> <network>" > /dev/stderr
   echo "Example: $0 my-vm internal" > /dev/stderr > /dev/stderr
   exit 2
