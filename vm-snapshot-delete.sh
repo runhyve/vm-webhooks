@@ -1,7 +1,7 @@
 #!/usr/local/bin/bash
 . commons.sh
 
-if [ -v $1 ]; then
+if [ -z "$1" ]; then
   echo "Usage: $0 <name> <snapshot>" > /dev/stderr
   echo "Example: $0 FreeBSD-VM 2018-11-18-11:08:57" > /dev/stderr
   exit 2
