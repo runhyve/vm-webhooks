@@ -12,7 +12,7 @@ if [ ! -z "$ssh_public_key" ]; then
 fi
 
 if [ "$ipv4" != "[]" ]; then
-  ipv4conf=$(jq -n -r "$ipv4 | .[] | to_entries[] | \"\(.key)=\(.value)\"" | tr '\n' ';')
+  ipv4conf=$(jq -n -r "$ipv4 | .[]" | jq -r "to_entries[] | \"\(.key)=\(.value)\"" | tr '\n' ';')
   OPTS+=" -n nameservers=1.1.1.1,8.8.8.8;$ipv4conf "
 fi
 
